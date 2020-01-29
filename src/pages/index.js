@@ -23,17 +23,37 @@ class Index extends React.Component {
     console.log(femFiltered);
     console.log(maleFiltered);
 
-    let pets = [];
+    let mCats = [];
+    let fCats = [];
 
     try {
       for (let man of maleFiltered) {
-        for (let pet of man.pets) {
-          pets.push(pet);
+        if (man.pets != null) {
+          for (let pet of man.pets) {
+            if (pet.type === "Cat") {
+              mCats.push(pet);
+            }
+          }
         }
       }
-      console.log(pets);
+      console.log(mCats);
     } catch (err) {
-      alert("error with new list");
+      alert(err.name + ": " + err.message);
+    }
+
+    try {
+      for (let woman of femFiltered) {
+        if (woman.pets != null) {
+          for (let pet of woman.pets) {
+            if (pet.type === "Cat") {
+              fCats.push(pet);
+            }
+          }
+        }
+      }
+      console.log(fCats);
+    } catch (err) {
+      alert(err.name + ": " + err.message);
     }
 
     return (
