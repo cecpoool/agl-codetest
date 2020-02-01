@@ -59,9 +59,21 @@ class Index extends React.Component {
     return (
       <div>
         <h1>Fella's Cats</h1>
-        <ul></ul>
+        <ul>
+          {mCats
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map(cat => (
+              <li>{cat.name}</li>
+            ))}
+        </ul>
         <h1>Gal's Cats</h1>
-        <ul></ul>
+        <ul>
+          {fCats
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map(cat => (
+              <li>{cat.name}</li>
+            ))}
+        </ul>
       </div>
     );
   }
