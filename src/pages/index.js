@@ -9,8 +9,7 @@ class Index extends React.Component {
   async componentDidMount() {
     fetch("http://agl-developer-test.azurewebsites.net/people.json")
       .then(response => response.json())
-      .then(data => this.setState({ result: data }))
-      .then(console.log(this.state.result));
+      .then(data => this.setState({ result: data }));
   }
 
   render() {
@@ -20,8 +19,8 @@ class Index extends React.Component {
     var maleFiltered = this.state.result.filter(function(e) {
       return e.gender === "Male";
     });
-    console.log(femFiltered);
-    console.log(maleFiltered);
+    // console.log(femFiltered);
+    // console.log(maleFiltered);
 
     let mCats = [];
     let fCats = [];
@@ -36,7 +35,7 @@ class Index extends React.Component {
           }
         }
       }
-      console.log(mCats);
+      // console.log(mCats);
     } catch (err) {
       alert(err.name + ": " + err.message);
     }
@@ -51,29 +50,33 @@ class Index extends React.Component {
           }
         }
       }
-      console.log(fCats);
+      // console.log(fCats);
     } catch (err) {
       alert(err.name + ": " + err.message);
     }
 
+    const fellasList = mCats
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .map((cat, index) => (
+        <li key={"fella's " + cat.type + (index + 1)}>{cat.name}</li>
+      ));
+
+    const galsList = fCats
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .map((cat, index) => (
+        <li key={"gal's " + cat.type + (index + 1)}>{cat.name}</li>
+      ));
+
+    // {
+    //   props.Numbers.map((number, index) => <li key={index}>{number * 2}</li>);
+    // }
+
     return (
       <div>
         <h1>Fella's Cats</h1>
-        <ul>
-          {mCats
-            .sort((a, b) => a.name.localeCompare(b.name))
-            .map(cat => (
-              <li>{cat.name}</li>
-            ))}
-        </ul>
+        <ul>{fellasList}</ul>
         <h1>Gal's Cats</h1>
-        <ul>
-          {fCats
-            .sort((a, b) => a.name.localeCompare(b.name))
-            .map(cat => (
-              <li>{cat.name}</li>
-            ))}
-        </ul>
+        <ul>{galsList}</ul>
       </div>
     );
   }
