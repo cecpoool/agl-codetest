@@ -67,10 +67,6 @@ class Index extends React.Component {
         <li key={"gal's " + cat.type + (index + 1)}>{cat.name}</li>
       ));
 
-    // {
-    //   props.Numbers.map((number, index) => <li key={index}>{number * 2}</li>);
-    // }
-
     return (
       <div>
         <h1>Fella's Cats</h1>
