@@ -12,14 +12,14 @@ function Index() {
     fetchData();
   });
 
-  const FilterOwners = async gender => {
+  const Filter = async gender => {
     result.filter(function(e) {
       return e.gender === gender;
     });
   };
 
-  var femFiltered = FilterOwners("Female");
-  var maleFiltered = FilterOwners("Male");
+  var femFiltered = Filter("Female");
+  var maleFiltered = Filter("Male");
 
   // console.log(femFiltered);
   // console.log(maleFiltered);
