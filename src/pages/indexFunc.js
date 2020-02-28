@@ -1,28 +1,25 @@
 import React, { useState, useEffect } from "react";
 
 function Index() {
-  const [result, setResult] = useState([]);
-  //array of objects not object - most data you get will be an array.
+  const [result, setResult] = useState({});
 
-  //functional doesnt have to be async as the .then syntax implies a promise function
   useEffect(() => {
     async function fetchData() {
       fetch("http://agl-developer-test.azurewebsites.net/people.json")
         .then(response => response.json())
-        .then(data => setResult(data));
+        .then(data => setResult({ result: data }));
     }
     fetchData();
-  }, []);
-  //need the empty dependencies or the function will endlessly call
+  });
 
-  const FilterOwners = gender => {
-    return result.filter(function(e) {
+  const Filter = async gender => {
+    result.filter(function(e) {
       return e.gender === gender;
     });
   };
 
-  const femFiltered = FilterOwners("Female");
-  const maleFiltered = FilterOwners("Male");
+  var femFiltered = Filter("Female");
+  var maleFiltered = Filter("Male");
 
   // console.log(femFiltered);
   // console.log(maleFiltered);
@@ -42,7 +39,7 @@ function Index() {
     }
     // console.log(mCats);
   } catch (err) {
-    console.log(err.name + ": " + err.message);
+    alert(err.name + ": " + err.message);
   }
 
   try {
@@ -57,7 +54,7 @@ function Index() {
     }
     // console.log(fCats);
   } catch (err) {
-    console.log(err.name + ": " + err.message);
+    alert(err.name + ": " + err.message);
   }
 
   const fellasList = mCats
